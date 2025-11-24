@@ -2,7 +2,7 @@
 /*
 Plugin Name: Cookie Notice & Compliance for GDPR / CCPA
 Description: Cookie Notice allows you to you elegantly inform users that your site uses cookies and helps you comply with GDPR, CCPA and other data privacy laws.
-Version: 2.5.8
+Version: 2.5.9
 Author: Hu-manity.co
 Author URI: https://hu-manity.co/
 Plugin URI: https://cookie-compliance.co/
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) )
  * Cookie Notice class.
  *
  * @class Cookie_Notice
- * @version	2.5.8
+ * @version	2.5.9
  */
 class Cookie_Notice {
 
@@ -131,18 +131,20 @@ class Cookie_Notice {
 			'csp_notice'			=> false
 		],
 		'privacy_consent' => [
-			'wordpress_active'				=> true,
-			'wordpress_active_type'			=> 'all',
-			'contactform7_active'			=> false,
-			'contactform7_active_type'		=> 'all',
-			'mailchimp_active'				=> false,
-			'mailchimp_active_type'			=> 'all',
-			'wpforms_active'				=> false,
-			'wpforms_active_type'			=> 'all',
-			'woocommerce_active'			=> false,
-			'woocommerce_active_type'		=> 'all',
-			'formidableforms_active'		=> false,
-			'formidableforms_active_type'	=> 'all'
+			'wordpress_active'					=> true,
+			'wordpress_active_type'				=> 'all',
+			'contactform7_active'				=> false,
+			'contactform7_active_type'			=> 'all',
+			'mailchimp_active'					=> false,
+			'mailchimp_active_type'				=> 'all',
+			'wpforms_active'					=> false,
+			'wpforms_active_type'				=> 'all',
+			'woocommerce_active'				=> false,
+			'woocommerce_active_type'			=> 'all',
+			'formidableforms_active'			=> false,
+			'formidableforms_active_type'		=> 'all',
+			'easydigitaldownloads_active'		=> false,
+			'easydigitaldownloads_active_type'	=> 'all'
 		],
 		'data'	=> [
 			'status'				=> '',
@@ -150,7 +152,7 @@ class Cookie_Notice {
 			'threshold_exceeded'	=> false,
 			'activation_datetime'	=> 0
 		],
-		'version'	=> '2.5.8'
+		'version'	=> '2.5.9'
 	];
 
 	/**
@@ -1061,7 +1063,8 @@ class Cookie_Notice {
 	 */
 	public function cookies_accepted_shortcode( $args, $content ) {
 		if ( $this->cookies_accepted() ) {
-			$scripts = html_entity_decode( trim( wp_kses( $content, $this->get_allowed_html( 'body' ) ) ) );
+			// Only sanitize with wp_kses - do not decode entities from user-generated content
+			$scripts = trim( wp_kses( $content, $this->get_allowed_html( 'body' ) ) );
 
 			if ( ! empty( $scripts ) ) {
 				if ( preg_match_all( '/' . get_shortcode_regex() . '/', $content ) )

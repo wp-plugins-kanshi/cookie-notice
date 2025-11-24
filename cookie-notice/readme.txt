@@ -4,7 +4,7 @@ Tags: gdpr, ccpa, cookies, consent, privacy
 Requires at least: 4.9.6
 Requires PHP: 7.4
 Tested up to: 6.8.3
-Stable tag: 2.5.8
+Stable tag: 2.5.9
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -122,6 +122,11 @@ Yes! The plugin + web appliaction version includes technical compliance features
 4. Cookie Compliance settings
 
 == Changelog ==
+
+= 2.5.9 =
+* Security: Fixed Stored XSS vulnerability in [cookies_accepted] shortcode via HTML entity resurrection
+* New: Easy Digital Downloads privacy consent support
+* Fix: Improved bot detection and object cache compatibility
 
 = 2.5.8 =
 * New: Microsoft Clarity Consent API v2 support
@@ -565,4 +570,4 @@ Initial release
 
 == Upgrade Notice ==
 
-Microsoft Clarity Consent API v2 support
+New: Easy Digital Downloads privacy consent support, Security: Fixed Stored XSS vulnerability in [cookies_accepted] shortcode
